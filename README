@@ -1,2 +1,24 @@
-# large-scale-feature-selection
+large-scale-feature-selection
+===============================
 implementation of the method in this paper "Parallel Large Scale Feature Selection for Logistic Regression "
+
+usage(main_script.sh is an example)
+=====================================
+1. transform data format
+in main_script.sh: ./preprocess mushroom.data train_data test_data
+train_data/test_data's format: label index:value index:value ...
+index is feature_class-feature_name(for categorical feature) or feature_class(for numerical feature)
+-----------------------------------------------------------------------------
+2. estimate new feature's weight
+new features are the features in train data, but not in base model.
+in main_script.sh: hadoop jar featsel_estimate.jar hc/train_data hc/base_model hc/new_model(output_path) 1.0(lambda) 10(reduce_task_num)
+main-calss of featsel_estimate.jar: com.sohu.hc.featsel.estimate.FeatSelEstimate.class
+-----------------------------------------------------------------------------
+3. evaluate new feature's weight
+in main_script.sh: hadoop jar featsel_evaluate.jar hc/test_data hc/base_model hc/new_model hc/result 10(reduce_task_num)
+main-class of featsel_evaluate.jar com.sohu.hc.featsel.evaluate.FeatSelEvaluate.class
+------------------------------------------------------------------------------
+4. format of result file
+feature_class auc_improvement:logloss_improvement
+------------------------------------------------------------------------------
+5. the example in main_script.sh only shows how to use this program. this program can handle very large scale problems. Contact me if you have other problems.

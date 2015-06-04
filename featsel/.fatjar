@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Wed Jun 03 23:25:31 CST 2015
+onejar.license.required=true
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=false
+jarname=featsel_evaluate.jar
+manifest.mergeall=true
+manifest.mainclass=com.sohu.hc.featsel.evaluate.FeatSelEvaluate
+manifest.file=<createnew>
+jarname.isextern=false
+onejar.expand=
+excludes=
+includes=
